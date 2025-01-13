@@ -1,0 +1,29 @@
+* {
+    margin: 0
+}
+
+
+body {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+#container {
+    margin-top: 100px;
+    width: 400px;
+    height: 400px;
+    border: 2px black solid;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.cell {
+    font-size: 42px;
+    /* color: red; */
+    border: 1px black solid;
+    width: auto;
+    height: auto;
+    text-align: center;
+}
