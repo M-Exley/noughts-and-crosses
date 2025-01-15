@@ -77,49 +77,50 @@ container.addEventListener('click', function(e) {
          
     
     // Map container vals to board array ---- case
-          
+    let currentPlayerSymbol = player;
+    // togglePlayer();
         switch(squarePressed) {
             case 1:
-                board[0][0] = 1;
-                board[3][0] = 1;
-                board[6][0] = 1;
+                board[0][0] = `${currentPlayerSymbol.playerSymbol}`;
+                board[3][0] = `${currentPlayerSymbol.playerSymbol}`;
+                board[6][0] = `${currentPlayerSymbol.playerSymbol}`;
                 break;  
             case 2:
-                board[1][0] = 2;
-                board[3][1] = 2;
+                board[1][0] = `${currentPlayerSymbol.playerSymbol}`;
+                board[3][1] = `${currentPlayerSymbol.playerSymbol}`;
                 break;  
             case 3:
-                board[2][0] = 3;
-                board[3][2] = 3;
-                board[7][0] = 3;
+                board[2][0] = `${currentPlayerSymbol.playerSymbol}`;
+                board[3][2] = `${currentPlayerSymbol.playerSymbol}`;
+                board[7][0] = `${currentPlayerSymbol.playerSymbol}`;
                 break;  
             case 4:
-                board[0][1] = 4;
-                board[4][0] = 4;
+                board[0][1] = `${currentPlayerSymbol.playerSymbol}`;
+                board[4][0] = `${currentPlayerSymbol.playerSymbol}`;
                 break;  
             case 5:
-                board[1][1] = 5;
-                board[4][1] = 5;
-                board[6][1] = 5;
-                board[7][1] = 5;
+                board[1][1] = `${currentPlayerSymbol.playerSymbol}`;
+                board[4][1] = `${currentPlayerSymbol.playerSymbol}`;
+                board[6][1] = `${currentPlayerSymbol.playerSymbol}`;
+                board[7][1] = `${currentPlayerSymbol.playerSymbol}`;
                 break;  
             case 6:
-                board[2][1] = 6;
-                board[4][2] = 6;
+                board[2][1] = `${currentPlayerSymbol.playerSymbol}`;
+                board[4][2] = `${currentPlayerSymbol.playerSymbol}`;
                 break;  
             case 7:
-                board[0][2] = 7;
-                board[5][0] = 7;
-                board[7][2] = 7;
+                board[0][2] = `${currentPlayerSymbol.playerSymbol}`;
+                board[5][0] = `${currentPlayerSymbol.playerSymbol}`;
+                board[7][2] = `${currentPlayerSymbol.playerSymbol}`;
                 break;  
             case 8:
-                board[1][2] = 8;
-                board[5][1] = 8;
+                board[1][2] = `${currentPlayerSymbol.playerSymbol}`;
+                board[5][1] = `${currentPlayerSymbol.playerSymbol}`;
                 break;  
             case 9:
-                board[2][2] = 9;
-                board[5][2] = 9;
-                board[6][2] = 9;
+                board[2][2] = `${currentPlayerSymbol.playerSymbol}`;
+                board[5][2] = `${currentPlayerSymbol.playerSymbol}`;
+                board[6][2] = `${currentPlayerSymbol.playerSymbol}`;
                 break;  
 
                 default:
@@ -129,8 +130,10 @@ container.addEventListener('click', function(e) {
             console.log(board)
         
     
-     togglePlayer();
-     console.log(player)
+            togglePlayer();
+            console.log(player)
+            const checkLine = board.every((el) => el === 'X')
+            if (checkLine === true) console.log(`Winner is ${currentPlayerSymbol}`)
     console.log(compareBoards(board, winningArrays));
     
     
@@ -150,19 +153,27 @@ function compareBoards(a, b) {
 
                 for (let j = 0; j < Math.min(childArray1.length, childArray2.length); j++) {
                     
-                    if(childArray1.every((element, index) => element === childArray2[index]) )
-                   return true;
-                //    return resWinner;
-                    //    if (res === true) {
-                    //    console.log("We have a winner") 
-                    //    break;
+                    const everyArr = childArray1.every((element, index) => element === childArray2[index]);
+                    if (everyArr)
+                       return true;
+                        
+                //   { 
+                    //    const arrCheck = [...board];
+                    //    const arrCheck = childArray1.splice(j, 1, 'X')
+                    //    console.log(arrCheck); // will go down a rabbit hole trying to make logic work
+                    // console.log(j.textContent)
+                    // }
+                       
+                       // check textContent of board
+                    
+                }       
                         
                     
-                    
-                }
+                
         }
         return false;
     }
+
     
 };
 
@@ -173,6 +184,4 @@ function togglePlayer(_) {
         player = playersObject.playerOne
     }
 
-}
-
-
+};
