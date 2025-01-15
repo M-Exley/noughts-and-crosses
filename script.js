@@ -3,6 +3,7 @@ const container = document.getElementById('container');
 let player;
 let res;
 let squarePressed;
+let resWinner;
 
 const board = [ // 8 winning combos
     [0,0,0], // 1
@@ -68,6 +69,7 @@ container.addEventListener('click', function(e) {
     })
     squarePressed = +(e.target.id);
     res.textContent = `${player.playerSymbol}`
+    res.style.color = `${player.playerColour}`
     console.log(squarePressed, typeof squarePressed)
     // board.push(+(squarePressed)); // works
     // board.splice(squarePressed, 1, `${res.textContent}`)
@@ -128,10 +130,11 @@ container.addEventListener('click', function(e) {
         
     
      togglePlayer();
+     console.log(player)
     console.log(compareBoards(board, winningArrays));
     
     
-})
+});
 
 
 // loop through both boards using variables [i][j]
@@ -139,17 +142,31 @@ function compareBoards(a, b) {
     if (a.length !== b.length) return false;
     else {
 
-        for (let i = 0; i < a.length; i++) {
-            if (a[i] !== b[i]) {
-                return false
-            }
+        for (let i = 0; i < Math.min(a.length, b.length); i++) {
+            const childArray1 = a[i];
+            const childArray2 = b[i];
+            // console.log(childArray1, childArray2)
+            
+
+                for (let j = 0; j < Math.min(childArray1.length, childArray2.length); j++) {
+                    
+                    if(childArray1.every((element, index) => element === childArray2[index]) )
+                   return true;
+                //    return resWinner;
+                    //    if (res === true) {
+                    //    console.log("We have a winner") 
+                    //    break;
+                        
+                    
+                    
+                }
         }
-        return true;
+        return false;
     }
     
 };
 
-function togglePlayer(object) {
+function togglePlayer(_) {
     if (player === playersObject.playerOne) {
         player = playersObject.playerTwo
     } else if (player === playersObject.playerTwo) {
