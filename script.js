@@ -70,15 +70,9 @@ container.addEventListener('click', function(e) {
     squarePressed = +(e.target.id);
     res.textContent = `${player.playerSymbol}`
     res.style.color = `${player.playerColour}`
-    console.log(squarePressed, typeof squarePressed)
-    // board.push(+(squarePressed)); // works
-    // board.splice(squarePressed, 1, `${res.textContent}`)
-    // board.splice(squarePressed, 1, +(squarePressed))  
          
     
-    // Map container vals to board array ---- case
     let currentPlayerSymbol = player;
-    // togglePlayer();
         switch(squarePressed) {
             case 1:
                 board[0][0] = `${currentPlayerSymbol.playerSymbol}`;
@@ -132,50 +126,27 @@ container.addEventListener('click', function(e) {
     
             togglePlayer();
             console.log(player)
-            const checkLine = board.every((el) => el === 'X')
-            if (checkLine === true) console.log(`Winner is ${currentPlayerSymbol}`)
-    console.log(compareBoards(board, winningArrays));
-    
-    
+
+            board.forEach((arr) => {
+                if((arr.every((el) => el === 'O')) || (arr.every((el) => el === 'X'))) {
+                    const winner = document.getElementById('winner');
+                    winner.style.display = 'block';
+                    winner.textContent = `${currentPlayerSymbol.playerSymbol}`
+                    winner.style.color = `${currentPlayerSymbol.playerColour}`
+                    const reset = document.getElementById('reset');
+                    reset.style.display = 'block';
+                    reset.textContent = 'PLAY AGAIN'
+                    reset.style.color = `${currentPlayerSymbol.playerColour}`
+                    reset.addEventListener('click', function() {
+                        location.reload();
+
+                    })
+
+                }
+            })
+               
 });
 
-
-// loop through both boards using variables [i][j]
-function compareBoards(a, b) {
-    if (a.length !== b.length) return false;
-    else {
-
-        for (let i = 0; i < Math.min(a.length, b.length); i++) {
-            const childArray1 = a[i];
-            const childArray2 = b[i];
-            // console.log(childArray1, childArray2)
-            
-
-                for (let j = 0; j < Math.min(childArray1.length, childArray2.length); j++) {
-                    
-                    const everyArr = childArray1.every((element, index) => element === childArray2[index]);
-                    if (everyArr)
-                       return true;
-                        
-                //   { 
-                    //    const arrCheck = [...board];
-                    //    const arrCheck = childArray1.splice(j, 1, 'X')
-                    //    console.log(arrCheck); // will go down a rabbit hole trying to make logic work
-                    // console.log(j.textContent)
-                    // }
-                       
-                       // check textContent of board
-                    
-                }       
-                        
-                    
-                
-        }
-        return false;
-    }
-
-    
-};
 
 function togglePlayer(_) {
     if (player === playersObject.playerOne) {

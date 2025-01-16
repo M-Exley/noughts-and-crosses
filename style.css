@@ -19,6 +19,37 @@ body {
     grid-template-columns: 1fr 1fr 1fr;
 }
 
+#winner {
+    color: tomato;
+    font-size: 85px;
+    font-weight: 800;
+    text-align: center;
+    display: none;
+    width: 133px;
+    height: 133px;
+    align-content: center;
+    border: 2px black solid;
+    position: absolute;
+    margin-top: 105px;
+    margin-left: 315px;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
+
+#reset {
+    font-size: 30px;
+    font-weight: 800;
+    text-align: center;
+    display: none;
+    width: 133px;
+    height: fit-content;
+    border: 2px black solid;
+    position: absolute;
+    margin-left: 965px;
+    margin-top: 105px;
+    
+}
+
 .cell {
     font-size: 42px;
     /* color: red; */
@@ -27,3 +58,4 @@ body {
     height: auto;
     text-align: center;
 }
+
